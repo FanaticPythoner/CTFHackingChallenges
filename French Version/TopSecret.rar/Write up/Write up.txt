@@ -1,0 +1,23 @@
+1. Bruteforce le mot de passe de TopSecret.rar à l'aide d'une wordlist classique, tel que Rockyou.txt. Le mot de passe trouvé apparait: passw0rd
+2. Extraire l'archive SOUS WINDOWS ABSOLUMENT.
+3. Ouvrir une fenêtre de commande dans le dossier d'extraction
+4. Tapper: dir /R pour voir les streams alternatifs
+5. WOW! UN ALTERNATE DATA STREAM!
+6. Écrire un script permettant d'extraire (en lisant Byte par Byte) le ADS, comme celui-ci écrit en python 2.7:
+
+
+
+byteData = bytearray()
+
+with open("Secret.log:EvenMoreSecret", "rb") as alternateDataStreamStream:
+    byteData = alternateDataStreamStream.read()
+    alternateDataStreamStream.close()
+
+with open("EvenMoreSecret.exe", "wb") as outputStream:
+    outputStream.write(byteData)
+    outputStream.close()
+
+
+
+7. Regarder les premiers bytes pour découvrir l'extension du fichier extrait: C'est un executable windows.
+8. Exécuter l'exécutable extrait "EvenMoreSecret.exe". Le flag apparait: FLAG{W1nd0ws_ADS_Is_Fun}
