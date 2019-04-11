@@ -1,0 +1,3 @@
+1. Fait dans Visual Studio avec le .NET Framework
+2. Utlise le logiciel DotPeek (Ne Deobfuscate pas)
+3. Logiciel CFF Explorer, PE Headers
