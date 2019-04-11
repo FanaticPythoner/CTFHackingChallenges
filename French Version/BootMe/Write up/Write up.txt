@@ -1,0 +1,9 @@
+1. Essayer de Boot l'image (ou l'ouvrir dans Autopsy) BootMe.vhd, ne fonctionne pas.
+2. Ouvrir BootMe.vhd avec un HexEditor pour analyser le MBR, remarquer une chaine de caractère inhabituelle dans un MBR 
+   (La chaine de caractère "Invalid partition table. Error loading operating system." est corrompue: "TosDIhZDGonjMTKfLEJVz91OmzBInqBzO/UIt1RKkpsing system").
+3. Analyser la chaine de caractères, remarquer que c'est du Base64 encrypté.
+4. Détecter l'encryption, c'est du AES ECB 256 bits.
+5. Corriger le MBR pour que la VM soit bootable. (Corriger la chaine de caractère par l'originale. Mémoriser le Base64 pour plus tard.)
+6. Ouvrir le fichier VHD maintenant bootable dans Autopsy
+7. Bruteforce le fichier "%appdata%\HiddenApp\Key.rar" dans la VM avec rockyou.txt, qui donnera le mot de passe "Passw0rd123"
+8. Prendre la clé dans le fichier texte, casser l'encryption du Base64 original, cela révèlera le Flag: FLAG{Tr0uble_Sh00ting_Is_3asy}
